@@ -11,19 +11,7 @@ logFile.close()
 logData = []
 for line in logLines:
     logData.append(line.rstrip().split('|',5))
-	
-# Wait time between clicks	
-wtbc = 0
-wt = 0
-for logEntry in logData:
-	if logEntry[4] == " Left Click Down":
-		wtbc = wtbc + int(logEntry[3]) + wt
-		wt = 0
-	else:
-		wt = wt + int(logEntry[3])
-	
-print "Wait Time Between Clicks: " + str(wtbc) + " ms"
-	
+
 # Number of clicks	
 nc = 0
 for logEntry in logData:
@@ -31,6 +19,16 @@ for logEntry in logData:
 		nc = nc + 1
 	
 print "Number of Clicks: " + str(nc)
+	
+# Task time 
+tt = 0
+for logEntry in logData:
+	tt = tt + int(logEntry[3])
+
+print "Task time: " + str(tt) + " ms"
+ 
+# Mean wait time between clicks			
+print "Mean Wait Time Between Clicks: " + str(tt/nc) + " ms"
 
 # Mouse distance covered
 md = 0
@@ -43,4 +41,4 @@ for logEntry in logData:
 	
 print "Mouse distance covered: " + str(int(md))
 
- 
+	
